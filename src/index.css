@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+html, body { overflow-x: hidden; }
+body {
+  @apply bg-paper text-ink font-mono antialiased;
+  background-image:
+    linear-gradient(to right, rgba(20,22,26,.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20,22,26,.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+section[id] { scroll-margin-top: 112px; }
+:focus-visible { outline: 2px solid #00D4FF; outline-offset: 2px; }
+
+.scanlines::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 5;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,.16) 0, rgba(0,0,0,.16) 1px, transparent 1px, transparent 3px);
+}
+.page-scan {
+  position: fixed; inset: 0; pointer-events: none; z-index: 60;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,.045) 0, rgba(0,0,0,.045) 1px, transparent 1px, transparent 3px);
+}
+.analog-grade { filter: sepia(.25) saturate(1.2) contrast(1.05) hue-rotate(-8deg); }
+@keyframes blink { 50% { opacity: 0; } }
+.rec-dot { animation: blink 1.2s steps(1) infinite; }
+@media (prefers-reduced-motion: reduce) { .rec-dot { animation: none; } html { scroll-behavior: auto; } }
